@@ -1,7 +1,14 @@
 const express = require('express');
 const cors = require("cors");
+const mongoose = require('mongoose');
+
 
 const app = express();
+
+mongoose
+    .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("Connexion à MongoDB réussie !"))
+    .catch((error) => console.log({ message: error }));
 
 // Configurer les options CORS pour autoriser toutes les origines
 const corsOptions = {
