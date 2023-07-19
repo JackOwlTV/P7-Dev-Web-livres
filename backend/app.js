@@ -15,14 +15,15 @@ mongoose
     .then(() => console.log("Connexion à MongoDB réussie !"))
     .catch((error) => console.log({ message: error }));
 
-// Configurer les options CORS pour autoriser toutes les origines
-const corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200,
-};
 
 // Activer CORS pour toutes les routes
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true
+}));
 
 // Ajoute un middleware pour analyser ces données et les rendre disponibles dans req.body
 app.use(express.urlencoded({ extended: true }));
